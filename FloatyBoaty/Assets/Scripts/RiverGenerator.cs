@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using EasyButtons;
 
@@ -10,9 +11,11 @@ public class RiverGenerator : MonoBehaviour {
 	public GameObject terrainContainer;
 	public TerrainTemplate[] templates;
 
+	private List<TerrainTemplate> buffer;
+
 	// Use this for initialization
 	void Start () {
-		
+		buffer = new List<TerrainTemplate>();
 	}
 	
 	// Update is called once per frame
@@ -25,9 +28,19 @@ public class RiverGenerator : MonoBehaviour {
 	[Button]
 	// generates one segment
 	void Generate() {
+		// repopulate buffer on demand
+		if(buffer.Count == 0) {
+			foreach (TerrainTemplate t in templates)
+			{
+				int positionToInsert = Random.Range(0, buffer.Count + 1);
+				buffer.Insert(positionToInsert, t);
+			}
+		}
+
 		// choose random segment
-		int i = Random.Range(0, templates.Length);
-		TerrainTemplate template = templates[i];
+		int i = Random.Range(0, buffer.Count);
+		TerrainTemplate template = buffer[i];
+		buffer.RemoveAt(i);
 		GameObject prefab = template.gameObject;
 
 		// instantiate at current position
