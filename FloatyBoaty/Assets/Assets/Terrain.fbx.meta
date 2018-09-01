@@ -1,16 +1,37 @@
 fileFormatVersion: 2
-guid: 331894d3d5d23d1468583cf9be1b0196
+guid: da583dd2af4d120439e01f8791033e9f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: TerrainSegCurveLeft
+    100004: TerrainSegCurveRight
+    100006: TerrainSegOffsetRight
+    100008: TerrainSegOffsettLeft
+    100010: TerrainSegStraight
     400000: //RootNode
-    2100000: LogBrown
-    2100002: PlankBrown
-    2100004: NailGray
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Raft
+    400002: TerrainSegCurveLeft
+    400004: TerrainSegCurveRight
+    400006: TerrainSegOffsetRight
+    400008: TerrainSegOffsettLeft
+    400010: TerrainSegStraight
+    2100000: GrassGreen
+    2100002: RiverMud
+    2300000: TerrainSegCurveLeft
+    2300002: TerrainSegCurveRight
+    2300004: TerrainSegOffsetRight
+    2300006: TerrainSegOffsettLeft
+    2300008: TerrainSegStraight
+    3300000: TerrainSegCurveLeft
+    3300002: TerrainSegCurveRight
+    3300004: TerrainSegOffsetRight
+    3300006: TerrainSegOffsettLeft
+    3300008: TerrainSegStraight
+    4300000: TerrainSegStraight
+    4300002: TerrainSegOffsettLeft
+    4300004: TerrainSegOffsetRight
+    4300006: TerrainSegCurveLeft
+    4300008: TerrainSegCurveRight
   externalObjects: {}
   materials:
     importMaterials: 1
