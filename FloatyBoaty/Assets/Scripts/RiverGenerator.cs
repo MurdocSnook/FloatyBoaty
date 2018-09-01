@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EasyButtons;
 
 public class RiverGenerator : MonoBehaviour {
 	public GameObject playerObject;
@@ -21,6 +22,7 @@ public class RiverGenerator : MonoBehaviour {
 		}
 	}
 
+	[Button]
 	// generates one segment
 	void Generate() {
 		// choose random segment
