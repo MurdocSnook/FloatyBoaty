@@ -10,12 +10,15 @@ public class RiverGenerator : MonoBehaviour {
 
 	public GameObject terrainContainer;
 	public TerrainTemplate[] templates;
+	public int numberOfLoadedTemplates = 6;
 
 	private List<TerrainTemplate> buffer;
+	private List<TerrainTemplate> currentlyLoadedTemplates;
 
 	// Use this for initialization
 	void Start () {
 		buffer = new List<TerrainTemplate>();
+		currentlyLoadedTemplates = new List<TerrainTemplate>();
 	}
 	
 	// Update is called once per frame
@@ -68,5 +71,12 @@ public class RiverGenerator : MonoBehaviour {
 		// deactivate exit and entrance objects
 		exitObj.SetActive(false);
 		entranceObj.SetActive(false);
+
+		// add to the loaded templates
+		currentlyLoadedTemplates.Add(instance.GetComponent<TerrainTemplate>());
+		if(currentlyLoadedTemplates.Count > numberOfLoadedTemplates) {
+			Destroy(currentlyLoadedTemplates[0].gameObject);
+			currentlyLoadedTemplates.RemoveAt(0);
+		}
 	}
 }
