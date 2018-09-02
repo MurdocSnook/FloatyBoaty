@@ -244,3 +244,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entranceMarker: {fileID: 1560670044447970}
   exitMarker: {fileID: 1162737159117614}
+  smoothness: 0.42
+  iterationSteps: 3
