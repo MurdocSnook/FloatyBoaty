@@ -12,10 +12,17 @@ public class TerrainTemplate : MonoBehaviour {
 	public float smoothness = 1f;
 	public int iterationSteps = 3;
 
-	private List<Vector3> curve;
+    private List<Vector3> curve;
+    public List<Vector3> Curve
+    {
+        get
+        {
+            return curve;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		CalulateCurve();
 	}
 

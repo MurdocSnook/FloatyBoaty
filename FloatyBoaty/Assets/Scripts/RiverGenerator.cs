@@ -79,4 +79,24 @@ public class RiverGenerator : MonoBehaviour {
 			currentlyLoadedTemplates.RemoveAt(0);
 		}
 	}
+
+	public Vector3 GetWaterDirectionAt(Vector3 position) {
+		float minDist = float.PositiveInfinity;
+		Vector3 flowDir = Vector3.zero;
+
+		foreach (TerrainTemplate t in currentlyLoadedTemplates)
+		{
+			List<Vector3> curve = t.Curve;
+			for(int i = 0; i < curve.Count; i++) {
+				if(Vector3.Distance(curve[i], position) < minDist) {
+					minDist = Vector3.Distance(curve[i], position);
+					int p1 = Mathf.Max(i-1, 0);
+					int p2 = Mathf.Min(i+1, curve.Count-1);
+					flowDir = (curve[p2] - curve[p1]).normalized;
+				}
+			}
+		}
+
+		return flowDir;
+	}
 }
