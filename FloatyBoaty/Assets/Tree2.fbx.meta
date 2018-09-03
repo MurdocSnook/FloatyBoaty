@@ -23,7 +23,17 @@ ModelImporter:
     4300002: Tree_2_LOD1
     4300004: Tree_2_LOD2
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LogBrown
+    second: {fileID: 2100000, guid: 1f1d8df597f301647a4895e31ef99d8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeGreen
+    second: {fileID: 2100000, guid: 4e613d89389b98b409d70dc715eac2fb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -60,7 +70,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
+    importVisibility: 0
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
