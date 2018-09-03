@@ -22,7 +22,12 @@ ModelImporter:
     4300002: Bush_1_LOD1
     4300004: Bush_1_LOD2
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeGreenDarker
+    second: {fileID: 2100000, guid: ee5576fb4ea929d4489cf56c895cea05, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

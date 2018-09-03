@@ -23,7 +23,22 @@ ModelImporter:
     4300002: Tree_4_LOD1
     4300004: Tree_4_LOD2
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LogBrown
+    second: {fileID: 2100000, guid: 71709e4dcb4840145ae27307e08311ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeGreen
+    second: {fileID: 2100000, guid: 5fa7f98064ad48348a1648d7ef262d80, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ReedSheet
+    second: {fileID: 2800000, guid: 660c99abd8f71ea41a8ad19a678cbd66, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
