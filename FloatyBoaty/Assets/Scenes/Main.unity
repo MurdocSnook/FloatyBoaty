@@ -5364,6 +5364,7 @@ MonoBehaviour:
   baseWaterSpeed: 1
   baseWaterForce: 10
   rotationForce: 30
+  centreboardForce: 1
 --- !u!114 &840428220
 MonoBehaviour:
   m_ObjectHideFlags: 0
