@@ -2215,6 +2215,7 @@ GameObject:
   - component: {fileID: 33683354218769340}
   - component: {fileID: 23168643371781378}
   - component: {fileID: 114980203178117770}
+  - component: {fileID: 64690505147967806}
   m_Layer: 0
   m_Name: TerrainSegStraight
   m_TagString: Untagged
@@ -10313,6 +10314,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1752903476677800}
   m_Mesh: {fileID: 4300002, guid: 8111d2c09a246f640b9a7ea0edb9ecd6, type: 3}
+--- !u!64 &64690505147967806
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778700026745164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: da583dd2af4d120439e01f8791033e9f, type: 3}
 --- !u!114 &114980203178117770
 MonoBehaviour:
   m_ObjectHideFlags: 1

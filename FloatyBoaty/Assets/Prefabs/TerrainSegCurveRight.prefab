@@ -1927,6 +1927,7 @@ GameObject:
   - component: {fileID: 33128042953543988}
   - component: {fileID: 23118374774282856}
   - component: {fileID: 114812043688393246}
+  - component: {fileID: 64456097219249556}
   m_Layer: 0
   m_Name: TerrainSegCurveRight
   m_TagString: Untagged
@@ -18359,6 +18360,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645159176219890}
   m_Mesh: {fileID: 4300000, guid: 1e8b9c5918384c84cb3c31c866f67d6b, type: 3}
+--- !u!64 &64456097219249556
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401673168333352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300008, guid: da583dd2af4d120439e01f8791033e9f, type: 3}
 --- !u!114 &114812043688393246
 MonoBehaviour:
   m_ObjectHideFlags: 1

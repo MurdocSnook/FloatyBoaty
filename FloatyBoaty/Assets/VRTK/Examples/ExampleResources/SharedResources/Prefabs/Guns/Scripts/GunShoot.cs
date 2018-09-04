@@ -2,6 +2,7 @@
 {
     using UnityEngine;
 
+    [RequireComponent(typeof(AudioSource))]
     public class GunShoot : MonoBehaviour
     {
         public VRTK_InteractableObject linkedObject;
@@ -30,6 +31,7 @@
 
         protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
+            GetComponent<AudioSource>().Play();
             FireProjectile();
         }
 

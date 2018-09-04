@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 33154791070588884}
   - component: {fileID: 23803357536539278}
   - component: {fileID: 114409005512719410}
+  - component: {fileID: 64320181865662230}
   m_Layer: 0
   m_Name: TerrainSegOffsetRight
   m_TagString: Untagged
@@ -18110,6 +18111,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1239366280973238}
   m_Mesh: {fileID: 4300004, guid: 29c132fc68d72b744ba66e39769a07a4, type: 3}
+--- !u!64 &64320181865662230
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010396746809568}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: da583dd2af4d120439e01f8791033e9f, type: 3}
 --- !u!114 &114409005512719410
 MonoBehaviour:
   m_ObjectHideFlags: 1
