@@ -35,8 +35,11 @@ public class RaftController : MonoBehaviour {
 	}
 	
 	void Update () {
-		VRTK_DeviceFinder.PlayAreaTransform().position = transform.position;
-		VRTK_DeviceFinder.PlayAreaTransform().rotation = transform.rotation;
+        Transform playAreaTransform = VRTK_DeviceFinder.PlayAreaTransform();
+		if(playAreaTransform != null) {
+			playAreaTransform.position = transform.position;
+	        playAreaTransform.rotation = transform.rotation;
+		}
 	}
 
 	private void OnValidate() {
