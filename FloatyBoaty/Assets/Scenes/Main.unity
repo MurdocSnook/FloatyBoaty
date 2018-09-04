@@ -743,13 +743,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 103167445}
+  - component: {fileID: 103167443}
   m_Layer: 0
-  m_Name: Raft
+  m_Name: RaftContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &103167443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103167442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a686382528d0642803346d47fa5185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &103167445
 Transform:
   m_ObjectHideFlags: 0
