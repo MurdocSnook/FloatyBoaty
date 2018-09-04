@@ -122,6 +122,10 @@
         [Tooltip("Key used to switch between hair touch mode.")]
         public KeyCode hairTouchModifier = KeyCode.H;
 
+        [Header("Custom modifications")]
+        [Tooltip("Enables a free camera mode that move the HMD, not the play area.")]
+        public bool freeCam = true;
+
         #endregion
         #region Protected fields
 
@@ -410,22 +414,42 @@
 
             if (IsAcceptingMouseInput())
             {
-                Vector3 rot = transform.localRotation.eulerAngles;
-                rot.y += (mouseDiff * playerRotationMultiplier).x;
-                transform.localRotation = Quaternion.Euler(rot);
-
-                rot = neck.rotation.eulerAngles;
-
-                if (rot.x > 180)
+                if (freeCam)
                 {
-                    rot.x -= 360;
+                    Vector3 rot = neck.rotation.eulerAngles;
+                    rot.y += (mouseDiff * playerRotationMultiplier).x;
+
+                    if (rot.x > 180)
+                    {
+                        rot.x -= 360;
+                    }
+
+                    if (rot.x < 80 && rot.x > -80)
+                    {
+                        rot.x += (mouseDiff * playerRotationMultiplier).y * -1;
+                        rot.x = Mathf.Clamp(rot.x, -79, 79);
+                        neck.rotation = Quaternion.Euler(rot);
+                    }
                 }
-
-                if (rot.x < 80 && rot.x > -80)
+                else 
                 {
-                    rot.x += (mouseDiff * playerRotationMultiplier).y * -1;
-                    rot.x = Mathf.Clamp(rot.x, -79, 79);
-                    neck.rotation = Quaternion.Euler(rot);
+                    Vector3 rot = transform.localRotation.eulerAngles;
+                    rot.y += (mouseDiff * playerRotationMultiplier).x;
+                    transform.localRotation = Quaternion.Euler(rot);
+
+                    rot = neck.rotation.eulerAngles;
+
+                    if (rot.x > 180)
+                    {
+                        rot.x -= 360;
+                    }
+
+                    if (rot.x < 80 && rot.x > -80)
+                    {
+                        rot.x += (mouseDiff * playerRotationMultiplier).y * -1;
+                        rot.x = Mathf.Clamp(rot.x, -79, 79);
+                        neck.rotation = Quaternion.Euler(rot);
+                    }
                 }
             }
         }
@@ -433,21 +457,24 @@
         protected virtual void UpdatePosition()
         {
             float moveMod = Time.deltaTime * playerMoveMultiplier * sprintMultiplier;
+
+            Transform t = freeCam? neck : transform;
+
             if (Input.GetKey(moveForward))
             {
-                transform.Translate(transform.forward * moveMod, Space.World);
+                t.Translate(t.forward * moveMod, Space.World);
             }
             else if (Input.GetKey(moveBackward))
             {
-                transform.Translate(-transform.forward * moveMod, Space.World);
+                t.Translate(-t.forward * moveMod, Space.World);
             }
             if (Input.GetKey(moveLeft))
             {
-                transform.Translate(-transform.right * moveMod, Space.World);
+                t.Translate(-t.right * moveMod, Space.World);
             }
             else if (Input.GetKey(moveRight))
             {
-                transform.Translate(transform.right * moveMod, Space.World);
+                t.Translate(t.right * moveMod, Space.World);
             }
         }
 

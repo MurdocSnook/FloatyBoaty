@@ -3803,7 +3803,7 @@ MonoBehaviour:
   leftSnapHandle: {fileID: 0}
   throwVelocityWithAttachDistance: 0
   throwMultiplier: 1
-  onGrabCollisionDelay: 1
+  onGrabCollisionDelay: Infinity
 --- !u!114 &566978390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4725,8 +4725,7 @@ Transform:
 --- !u!114 &715312360
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114477814731103964, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715312358}
   m_Enabled: 1
@@ -4771,6 +4770,7 @@ MonoBehaviour:
   startMenuAlias: 102
   touchModifier: 116
   hairTouchModifier: 104
+  freeCam: 1
 --- !u!1 &723624069
 GameObject:
   m_ObjectHideFlags: 0
@@ -11350,7 +11350,7 @@ MonoBehaviour:
   leftSnapHandle: {fileID: 0}
   throwVelocityWithAttachDistance: 0
   throwMultiplier: 1
-  onGrabCollisionDelay: 1
+  onGrabCollisionDelay: Infinity
 --- !u!114 &2120604253
 MonoBehaviour:
   m_ObjectHideFlags: 0
