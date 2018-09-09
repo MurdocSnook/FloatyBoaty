@@ -26,7 +26,6 @@ public class BeaverBehaviour : MonoBehaviour {
 	private void Start() {
 		GameController gc = GameController.GetInstance();
 
-		state = BeaverState.IDLE;
 		if(gc.raft != null) {
 			target = gc.raft.transform;
 		}
