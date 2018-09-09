@@ -6,22 +6,19 @@ using VRTK;
 [RequireComponent(typeof(Rigidbody))]
 public class RaftController : MonoBehaviour {
 	public GameObject rudder;
-	public RiverGenerator riverGenerator;
-	public float baseWaterSpeed = 1f;
 	public float baseWaterForce = 1f;
 	public float rotationForce = 2f;
 	public float centreboardForce = 1f;
 
 	// Use this for initialization
-	void Start () {
-		
+	private void Start () {
 	}
 
-	void FixedUpdate() {
+	private void FixedUpdate() {
 		Rigidbody rb = GetComponent<Rigidbody>();
+		GameController gc = GameController.instance;
 
-        Vector3 waterDir = riverGenerator.GetWaterDirectionAt(transform.position);
-        Vector3 waterSpeed = waterDir * baseWaterSpeed;
+        Vector3 waterSpeed = gc.riverGenerator.GetWaterSpeedAt(transform.position);
 
 		// apply water force
 		Vector3 relativeSpeed = (waterSpeed - rb.velocity) * baseWaterForce;
@@ -46,12 +43,6 @@ public class RaftController : MonoBehaviour {
 		if(playAreaTransform != null) {
 			playAreaTransform.position = transform.position;
 	        playAreaTransform.rotation = transform.rotation;
-		}
-	}
-
-	private void OnValidate() {
-		if(riverGenerator == null) {
-			Debug.LogError("Please assign the river generator.");
 		}
 	}
 }

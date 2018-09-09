@@ -5,12 +5,16 @@ using UnityEngine;
 using EasyButtons;
 
 public class RiverGenerator : MonoBehaviour {
+	[Header("Generation")]
 	public GameObject playerObject;
 	public float generationDistance;
 
 	public GameObject terrainContainer;
 	public TerrainTemplate[] templates;
 	public int numberOfLoadedTemplates = 6;
+
+	[Header("Water movement")]
+	public float baseWaterSpeed = 1f;
 
 	private List<TerrainTemplate> buffer;
 	private List<TerrainTemplate> currentlyLoadedTemplates;
@@ -78,6 +82,10 @@ public class RiverGenerator : MonoBehaviour {
 			Destroy(currentlyLoadedTemplates[0].gameObject);
 			currentlyLoadedTemplates.RemoveAt(0);
 		}
+	}
+
+	public Vector3 GetWaterSpeedAt(Vector3 position) {
+		return GetWaterDirectionAt(position) * baseWaterSpeed;
 	}
 
 	public Vector3 GetWaterDirectionAt(Vector3 position) {
