@@ -25,7 +25,7 @@ public class SpawnObject : MonoBehaviour {
 	[Button]
 	public void Spawn() {
 		SpawnOption t = ChooseSpawnOption();
-		if(t != null) {
+		if(t != null && t.prefab == null) {
 			GameObject obj = Instantiate(t.prefab, transform.position, transform.rotation);
 			if(setParent) {
 				obj.transform.SetParent(transform);
