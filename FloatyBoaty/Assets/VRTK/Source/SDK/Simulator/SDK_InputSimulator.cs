@@ -148,6 +148,9 @@
         protected Transform rightHandHorizontalAxisGuide;
         protected Transform rightHandVerticalAxisGuide;
 
+        protected Vector3 leftHandLocalPos;
+        protected Vector3 rightHandLocalPos;
+
         #endregion
 
         /// <summary>
@@ -216,6 +219,13 @@
             rightHand.gameObject.SetActive(true);
             leftHand.gameObject.SetActive(true);
             crossHairPanel.SetActive(false);
+
+            leftHand.transform.SetParent(neck);
+            rightHand.transform.SetParent(neck);
+            leftHandLocalPos = leftHand.localPosition;
+            rightHandLocalPos = rightHand.localPosition;
+            leftHand.transform.SetParent(transform);
+            rightHand.transform.SetParent(transform);
         }
 
         protected virtual void OnDestroy()
@@ -288,7 +298,6 @@
             }
             else
             {
-                UpdateRotation();
                 if (Input.GetKeyDown(distancePickupRight) && Input.GetKey(distancePickupModifier))
                 {
                     TryPickup(true);
@@ -315,7 +324,21 @@
                 }
             }
 
-            UpdatePosition();
+            if(freeCam) {
+                UpdateRotation();
+                UpdatePosition(neck);
+
+                leftHand.transform.SetParent(neck);
+                rightHand.transform.SetParent(neck);
+                leftHand.localPosition = leftHandLocalPos;
+                rightHand.localPosition = rightHandLocalPos;
+                leftHand.transform.SetParent(transform);
+                rightHand.transform.SetParent(transform);
+
+            } else {
+                UpdateRotation();
+                UpdatePosition(transform);
+            }
 
             if (showControlHints)
             {
@@ -454,11 +477,9 @@
             }
         }
 
-        protected virtual void UpdatePosition()
+        protected virtual void UpdatePosition(Transform t)
         {
             float moveMod = Time.deltaTime * playerMoveMultiplier * sprintMultiplier;
-
-            Transform t = freeCam? neck : transform;
 
             if (Input.GetKey(moveForward))
             {
