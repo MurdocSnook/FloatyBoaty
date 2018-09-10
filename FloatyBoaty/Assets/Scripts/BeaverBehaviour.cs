@@ -38,6 +38,11 @@ public class BeaverBehaviour : MonoBehaviour {
 	}
 
 	private void Update() {
+		Animator anim = GetComponentInChildren<Animator>();
+		if(anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Dead")) {
+			transform.position = transform.position + Vector3.down * Time.deltaTime;
+		}
+
 		// TODO: Prototype code, refactor later.
 		Vector3 oldRotation = transform.rotation.eulerAngles;
 
@@ -68,7 +73,6 @@ public class BeaverBehaviour : MonoBehaviour {
 		transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationLerp * Time.deltaTime);
 
 		float rotationChange = (transform.rotation.eulerAngles.y - oldRotation.y) / Time.deltaTime;
-		Animator anim = GetComponent<Animator>();
 		anim.SetFloat("Blend", rotationChange / fullTurnThreshold);
 	}
 
