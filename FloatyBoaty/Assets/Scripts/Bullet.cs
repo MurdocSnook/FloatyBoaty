@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 	private Vector3 lastPosisiton;
 
 	public int damage = 5;
+	public bool isPiercing = false;
 
 	private void Start() {
 		lastPosisiton = transform.position;
@@ -19,6 +20,9 @@ public class Bullet : MonoBehaviour {
 		if(success) {
 			Creature poorGuy = hit.collider.gameObject.GetComponent<Creature>();
 			poorGuy.DealDamage(damage);
+			if(!isPiercing) {
+				Destroy(this.gameObject);
+			}
 		}
 
 		lastPosisiton = transform.position;
