@@ -27,5 +27,6 @@ public class Creature : MonoBehaviour {
 		if(anim != null) {
 			anim.SetTrigger("Die");
 		}
-	}
+        GetComponent<AudioSource>().Play();
+    }
 }
