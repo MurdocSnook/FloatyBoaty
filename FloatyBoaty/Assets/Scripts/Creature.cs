@@ -8,6 +8,10 @@ public class Creature : MonoBehaviour {
 
 	public void DealDamage(int damage) {
 		hp -= damage;
+		Animator a = GetComponentInChildren<Animator>();
+		if(a != null) {
+			a.SetTrigger("Hit");
+		}
 	}
 	public void Update() {
 		Animator anim = GetComponent<Animator>();
