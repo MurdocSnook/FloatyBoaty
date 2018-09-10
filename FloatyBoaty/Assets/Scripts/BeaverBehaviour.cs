@@ -41,7 +41,8 @@ public class BeaverBehaviour : MonoBehaviour {
 		Animator anim = GetComponentInChildren<Animator>();
 		if(anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Dead")) {
 			transform.position = transform.position + Vector3.down * Time.deltaTime;
-		} else {
+		} 
+		else if(anim == null || !anim.GetCurrentAnimatorStateInfo(0).IsName("BeaverDie")) {
 			// TODO: Prototype code, refactor later.
 			Vector3 oldRotation = transform.rotation.eulerAngles;
 
