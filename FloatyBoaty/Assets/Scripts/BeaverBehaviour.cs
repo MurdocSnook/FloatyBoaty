@@ -41,39 +41,39 @@ public class BeaverBehaviour : MonoBehaviour {
 		Animator anim = GetComponentInChildren<Animator>();
 		if(anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Dead")) {
 			transform.position = transform.position + Vector3.down * Time.deltaTime;
+		} else {
+			// TODO: Prototype code, refactor later.
+			Vector3 oldRotation = transform.rotation.eulerAngles;
+
+			GameController gc = GameController.GetInstance();
+			RiverGenerator rg = gc.riverGenerator;
+
+			velocity += Vector3.ClampMagnitude(GetAcceleration() * Time.deltaTime, maxAcceleration);
+			Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
+			velocity += (waterSpeed - velocity) * resistance;
+
+			velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
+			velocity.Scale(new Vector3(1, 0, 1));
+
+			transform.position += velocity * Time.deltaTime;
+
+			Quaternion newRotation = transform.rotation;
+			if(velocity.magnitude > beaverViewSwitchOverSpeed) {
+				newRotation = Quaternion.LookRotation(velocity - waterSpeed, Vector3.up);
+			} else
+			if(target != null) {
+				newRotation = Quaternion.Lerp(
+					Quaternion.LookRotation(target.position - transform.position, Vector3.up),
+					Quaternion.LookRotation(velocity - waterSpeed, Vector3.up), 
+					velocity.magnitude / beaverViewSwitchOverSpeed
+				);
+			}
+
+			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationLerp * Time.deltaTime);
+
+			float rotationChange = (transform.rotation.eulerAngles.y - oldRotation.y) / Time.deltaTime;
+			anim.SetFloat("Blend", rotationChange / fullTurnThreshold);
 		}
-
-		// TODO: Prototype code, refactor later.
-		Vector3 oldRotation = transform.rotation.eulerAngles;
-
-		GameController gc = GameController.GetInstance();
-		RiverGenerator rg = gc.riverGenerator;
-
-		velocity += Vector3.ClampMagnitude(GetAcceleration() * Time.deltaTime, maxAcceleration);
-        Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
-        velocity += (waterSpeed - velocity) * resistance;
-
-		velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
-		velocity.Scale(new Vector3(1, 0, 1));
-
-		transform.position += velocity * Time.deltaTime;
-
-		Quaternion newRotation = transform.rotation;
-		if(velocity.magnitude > beaverViewSwitchOverSpeed) {
-			newRotation = Quaternion.LookRotation(velocity - waterSpeed, Vector3.up);
-		} else
-		if(target != null) {
-			newRotation = Quaternion.Lerp(
-				Quaternion.LookRotation(target.position - transform.position, Vector3.up),
-				Quaternion.LookRotation(velocity - waterSpeed, Vector3.up), 
-				velocity.magnitude / beaverViewSwitchOverSpeed
-			);
-		}
-
-		transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationLerp * Time.deltaTime);
-
-		float rotationChange = (transform.rotation.eulerAngles.y - oldRotation.y) / Time.deltaTime;
-		anim.SetFloat("Blend", rotationChange / fullTurnThreshold);
 	}
 
 	private Vector3 GetAcceleration() {
