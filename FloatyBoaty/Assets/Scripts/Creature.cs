@@ -13,6 +13,7 @@ public class Creature : MonoBehaviour {
 			a.SetTrigger("Hit");
 		}
 	}
+	
 	public void Update() {
 		Animator anim = GetComponent<Animator>();
 		
