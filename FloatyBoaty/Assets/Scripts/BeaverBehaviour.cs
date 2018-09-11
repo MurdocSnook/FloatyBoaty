@@ -21,7 +21,10 @@ public class BeaverBehaviour : MonoBehaviour {
 	[Header("Visuals")]
 	public float fullTurnAngle = 30f;
 	public float rotationLerp = 1f;
-	public float beaverViewSwitchOverSpeed = 1f;
+	[Tooltip("Animation curve determining when the beaver looks at the boat vs. just looking forward, depending on distance to target.")]
+	public AnimationCurve lookAtBoatVSDirectionBlending;
+
+	public float testValue;
 
 	private Vector3 velocity;
 
@@ -46,7 +49,6 @@ public class BeaverBehaviour : MonoBehaviour {
 		} 
 		else if(anim == null || !anim.GetCurrentAnimatorStateInfo(0).IsName("BeaverDie")) {
 			// TODO: Prototype code, refactor later.
-			Vector3 oldRotation = transform.rotation.eulerAngles;
 
 			GameController gc = GameController.GetInstance();
 			RiverGenerator rg = gc.riverGenerator;
@@ -60,52 +62,51 @@ public class BeaverBehaviour : MonoBehaviour {
 
 			transform.position += velocity * Time.deltaTime;
 
-			Quaternion newRotation = transform.rotation;
-			if(velocity.magnitude > beaverViewSwitchOverSpeed) {
-				newRotation = Quaternion.LookRotation(velocity - waterSpeed, Vector3.up);
-			} else
-			if(target != null) {
-				newRotation = Quaternion.Lerp(
-					Quaternion.LookRotation(target.position - transform.position, Vector3.up),
+			Vector3 oldRotation = transform.rotation.eulerAngles;
+			Quaternion desiredRotation = transform.rotation;
+			if(target != null && lookAtBoatVSDirectionBlending != null) {
+				float distanceToTarget = Vector3.Distance(target.position, transform.position);
+				float lookAtTarget = lookAtBoatVSDirectionBlending.Evaluate(distanceToTarget);
+
+				desiredRotation = Quaternion.Lerp(
 					Quaternion.LookRotation(velocity - waterSpeed, Vector3.up), 
-					velocity.magnitude / beaverViewSwitchOverSpeed
+					Quaternion.LookRotation(target.position - transform.position, Vector3.up),
+					lookAtTarget
 				);
 			}
 
-			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationLerp * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, rotationLerp * Time.deltaTime);
 
-			float rotationChange = (transform.rotation.eulerAngles.y - oldRotation.y) / Time.deltaTime;
+			float rotationChange = Mathf.DeltaAngle(oldRotation.y, transform.rotation.eulerAngles.y) / Time.deltaTime;
+			testValue = rotationChange;
 			anim.SetFloat("Blend", rotationChange / fullTurnAngle);
 		}
 	}
 
 	private Vector3 GetAcceleration() {
-		SphereCollider sc = GetComponent<SphereCollider>();
 		Vector3 acc = Vector3.zero;
 		
 		// avoid other objects
-		if(sc != null) {
-			Collider[] colliders = Physics.OverlapSphere(
-				transform.position, 
-				sc.radius, 
-				LayerMask.GetMask(new string[] {"Bouncy", "Default"})
-				);
-			foreach (Collider col in colliders)
-			{
-				if(col.gameObject == this.gameObject) {
-					continue;
-				}
+		Collider[] colliders = Physics.OverlapSphere(
+			transform.position, 
+			colliderCheckRadius, 
+			LayerMask.GetMask(new string[] {"Bouncy", "Default"})
+			);
+		foreach (Collider col in colliders)
+		{
+			if(col.gameObject == this.gameObject) {
+				continue;
+			}
 
-				Vector3 closestP = col.ClosestPoint(transform.position);
-				Vector3 dif = transform.position - closestP;
-				// check if too small, then fix
-				if(dif.magnitude < 0.01f) {
-					dif = transform.position - col.gameObject.transform.position;
-				}
-				// for safety check if still too small
-				if(dif.magnitude > 0.01f) {
-					acc += dif.normalized * (pushStrength / dif.magnitude);
-				}
+			Vector3 closestP = col.ClosestPoint(transform.position);
+			Vector3 dif = transform.position - closestP;
+			// check if too small, then fix
+			if(dif.magnitude < 0.01f) {
+				dif = transform.position - col.gameObject.transform.position;
+			}
+			// for safety check if still too small
+			if(dif.magnitude > 0.01f) {
+				acc += dif.normalized * (pushStrength / dif.magnitude);
 			}
 		}
 
