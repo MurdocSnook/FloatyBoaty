@@ -16,13 +16,13 @@ public class Bullet : MonoBehaviour {
 		lastPosisiton = transform.position;
 	}
 
-	private void FixedUpdate() {
-		if(Vector3.Distance(initialPosition, lastPosisiton) >= inactiveDistance) {	
-			RaycastHit hit;
-			Vector3 dif = transform.position - lastPosisiton;
-			bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
+	private void Update() {
+		RaycastHit hit;
+		Vector3 dif = transform.position - lastPosisiton;
+		bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
 
-			if(success) {
+		if(success) {
+			if(Vector3.Distance(initialPosition, hit.point) >= inactiveDistance) {	
 				Creature creature = hit.collider.gameObject.GetComponent<Creature>();
 
 				if(creature != null) {
