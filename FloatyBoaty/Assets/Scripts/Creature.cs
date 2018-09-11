@@ -14,9 +14,7 @@ public class Creature : MonoBehaviour {
 		}
 	}
 	
-	public void Update() {
-		Animator anim = GetComponent<Animator>();
-		
+	public void Update() {		
 		if (hp <= 0 && !dead) {
 			dead = true;
 			Die();

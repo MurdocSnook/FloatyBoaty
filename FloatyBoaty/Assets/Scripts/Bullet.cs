@@ -18,8 +18,12 @@ public class Bullet : MonoBehaviour {
 		bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
 
 		if(success) {
-			Creature poorGuy = hit.collider.gameObject.GetComponent<Creature>();
-			poorGuy.DealDamage(damage);
+			Creature creature = hit.collider.gameObject.GetComponent<Creature>();
+			
+			if(creature != null) {
+				creature.DealDamage(damage);
+			}
+
 			if(!isPiercing) {
 				Destroy(this.gameObject);
 			}

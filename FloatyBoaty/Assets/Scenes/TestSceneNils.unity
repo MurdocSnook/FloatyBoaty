@@ -1866,6 +1866,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1430769875325218, guid: e3efb9f85a0b8af4fa44e8346c52be0a,
     type: 2}
   m_PrefabInternal: {fileID: 1967782442}
+--- !u!114 &883294370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114662013696474930, guid: e3efb9f85a0b8af4fa44e8346c52be0a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1967782442}
+  m_Script: {fileID: 11500000, guid: 3894ec43c045e944a8d7d67af6ae5e91, type: 3}
 --- !u!1 &912227120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,7 +2492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riverGenerator: {fileID: 1435670455}
-  raft: {fileID: 0}
+  raft: {fileID: 883294370}
 --- !u!1001 &1230466941
 Prefab:
   m_ObjectHideFlags: 0

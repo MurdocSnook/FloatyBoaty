@@ -6,18 +6,20 @@ using UnityEngine;
 
 public class BeaverBehaviour : MonoBehaviour {
 	public Transform target;
-	public float beaverRepellFalloff = 0.5f;
+	[Header("Avoid collisions")]
+	public float pushStrength = 2.5f;
+	public float colliderCheckRadius = 0.7f;
 
 	[Header("Movement")]
 	public float maxSpeed = 1f;
 	public float maxAcceleration = 1f;
 	[Range(0f, 1f)]
-	public float resistance = 0.2f;
-	public float moveWeight = 1f;
+	public float waterResistance = 0.2f;
+	public float forwardsWeight = 1f;
 	public float strafeWeight = 1f;
 
 	[Header("Visuals")]
-	public float fullTurnThreshold = 30f;
+	public float fullTurnAngle = 30f;
 	public float rotationLerp = 1f;
 	public float beaverViewSwitchOverSpeed = 1f;
 
@@ -51,7 +53,7 @@ public class BeaverBehaviour : MonoBehaviour {
 
 			velocity += Vector3.ClampMagnitude(GetAcceleration() * Time.deltaTime, maxAcceleration);
 			Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
-			velocity += (waterSpeed - velocity) * resistance;
+			velocity += (waterSpeed - velocity) * waterResistance;
 
 			velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
 			velocity.Scale(new Vector3(1, 0, 1));
@@ -73,7 +75,7 @@ public class BeaverBehaviour : MonoBehaviour {
 			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationLerp * Time.deltaTime);
 
 			float rotationChange = (transform.rotation.eulerAngles.y - oldRotation.y) / Time.deltaTime;
-			anim.SetFloat("Blend", rotationChange / fullTurnThreshold);
+			anim.SetFloat("Blend", rotationChange / fullTurnAngle);
 		}
 	}
 
@@ -102,14 +104,14 @@ public class BeaverBehaviour : MonoBehaviour {
 				}
 				// for safety check if still too small
 				if(dif.magnitude > 0.01f) {
-					acc += dif.normalized * (beaverRepellFalloff / dif.magnitude);
+					acc += dif.normalized * (pushStrength / dif.magnitude);
 				}
 			}
 		}
 
 		if (target != null) {
 			// move to target
-			acc += (target.position - transform.position) * moveWeight;
+			acc += (target.position - transform.position) * forwardsWeight;
 			// straft
 			acc += Vector3.Cross(target.position - transform.position, Vector3.up).normalized * strafeWeight;
 		}
