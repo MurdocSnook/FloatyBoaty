@@ -7,25 +7,31 @@ public class Bullet : MonoBehaviour {
 
 	public int damage = 5;
 	public bool isPiercing = false;
+	public float inactiveDistance = .5f;
+
+	private Vector3 initialPosition;
 
 	private void Start() {
+		initialPosition = transform.position;
 		lastPosisiton = transform.position;
 	}
 
 	private void FixedUpdate() {
-		RaycastHit hit;
-		Vector3 dif = transform.position - lastPosisiton;
-		bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
+		if(Vector3.Distance(initialPosition, lastPosisiton) >= inactiveDistance) {	
+			RaycastHit hit;
+			Vector3 dif = transform.position - lastPosisiton;
+			bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
 
-		if(success) {
-			Creature creature = hit.collider.gameObject.GetComponent<Creature>();
-			
-			if(creature != null) {
-				creature.DealDamage(damage);
-			}
+			if(success) {
+				Creature creature = hit.collider.gameObject.GetComponent<Creature>();
 
-			if(!isPiercing) {
-				Destroy(this.gameObject);
+				if(creature != null) {
+					creature.DealDamage(damage);
+				}
+
+				if(!isPiercing) {
+					Destroy(this.gameObject);
+				}
 			}
 		}
 
