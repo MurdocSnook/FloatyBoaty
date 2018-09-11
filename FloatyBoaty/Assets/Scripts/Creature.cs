@@ -13,8 +13,12 @@ public class Creature : MonoBehaviour {
 			a.SetTrigger("Hit");
 		}
 	}
+
+	public bool IsDead() {
+		return dead;
+	}
 	
-	public void Update() {		
+	private void Update() {		
 		if (hp <= 0 && !dead) {
 			dead = true;
 			Die();

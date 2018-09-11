@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+[RequireComponent(typeof(Creature))]
 public class BeaverBehaviour : MonoBehaviour {
 	public Transform target;
 	[Header("Avoid collisions")]
@@ -23,12 +23,9 @@ public class BeaverBehaviour : MonoBehaviour {
 	public float rotationLerp = 1f;
 	[Tooltip("Animation curve determining when the beaver looks at the boat vs. just looking forward, depending on distance to target.")]
 	public AnimationCurve lookAtBoatVSDirectionBlending;
-	public AnimationCurve beaverSinkAnimationCurve;
-
-	public float testValue;
+	public float beaverSinkSpeed = 1f;
 
 	private Vector3 velocity;
-	private float beaverSinkT = 0f;
 
 	private void Start() {
 		GameController gc = GameController.GetInstance();
@@ -46,25 +43,26 @@ public class BeaverBehaviour : MonoBehaviour {
 
 	private void Update() {
 		Animator anim = GetComponentInChildren<Animator>();
-		if(anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Dead")) {
-			transform.position = transform.position + Vector3.down * beaverSinkAnimationCurve.Evaluate(beaverSinkT) * Time.deltaTime;
-			beaverSinkT += Time.deltaTime;
-		} 
-		else if(anim == null || !anim.GetCurrentAnimatorStateInfo(0).IsName("BeaverDie")) {
-			// TODO: Prototype code, refactor later.
+		// TODO: Prototype code, refactor later.
 
-			GameController gc = GameController.GetInstance();
-			RiverGenerator rg = gc.riverGenerator;
+		GameController gc = GameController.GetInstance();
+		RiverGenerator rg = gc.riverGenerator;
+		Creature cr = GetComponent<Creature>();
 
-			velocity += Vector3.ClampMagnitude(GetAcceleration() * Time.deltaTime, maxAcceleration);
-			Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
-			velocity += (waterSpeed - velocity) * waterResistance;
+		velocity += Vector3.ClampMagnitude(GetAcceleration() * Time.deltaTime, maxAcceleration);
+		Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
+		velocity += (waterSpeed - velocity) * waterResistance;
 
-			velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
-			velocity.Scale(new Vector3(1, 0, 1));
+		velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
+		velocity.Scale(new Vector3(1, 0, 1));
 
-			transform.position += velocity * Time.deltaTime;
+		if(cr.IsDead() && (anim.GetCurrentAnimatorStateInfo(0).IsName("Dead"))) {
+			velocity += Vector3.down * beaverSinkSpeed * Time.deltaTime;
+		}
 
+		transform.position += velocity * Time.deltaTime;
+
+		if(!cr.IsDead()){
 			Vector3 oldRotation = transform.rotation.eulerAngles;
 			Quaternion desiredRotation = transform.rotation;
 			if(target != null && lookAtBoatVSDirectionBlending != null) {
@@ -81,13 +79,13 @@ public class BeaverBehaviour : MonoBehaviour {
 			transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, rotationLerp * Time.deltaTime);
 
 			float rotationChange = Mathf.DeltaAngle(oldRotation.y, transform.rotation.eulerAngles.y) / Time.deltaTime;
-			testValue = rotationChange;
 			anim.SetFloat("Blend", rotationChange / fullTurnAngle);
 		}
 	}
 
 	private Vector3 GetAcceleration() {
 		Vector3 acc = Vector3.zero;
+		Creature cr = GetComponent<Creature>();
 		
 		// avoid other objects
 		Collider[] colliders = Physics.OverlapSphere(
@@ -113,11 +111,13 @@ public class BeaverBehaviour : MonoBehaviour {
 			}
 		}
 
-		if (target != null) {
-			// move to target
-			acc += (target.position - transform.position) * forwardsWeight;
-			// straft
-			acc += Vector3.Cross(target.position - transform.position, Vector3.up).normalized * strafeWeight;
+		if(!cr.IsDead()){
+			if (target != null) {
+				// move to target
+				acc += (target.position - transform.position) * forwardsWeight;
+				// straft
+				acc += Vector3.Cross(target.position - transform.position, Vector3.up).normalized * strafeWeight;
+			}
 		}
 
 		return acc;
