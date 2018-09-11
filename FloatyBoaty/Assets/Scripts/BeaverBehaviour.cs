@@ -23,10 +23,12 @@ public class BeaverBehaviour : MonoBehaviour {
 	public float rotationLerp = 1f;
 	[Tooltip("Animation curve determining when the beaver looks at the boat vs. just looking forward, depending on distance to target.")]
 	public AnimationCurve lookAtBoatVSDirectionBlending;
+	public AnimationCurve beaverSinkAnimationCurve;
 
 	public float testValue;
 
 	private Vector3 velocity;
+	private float beaverSinkT = 0f;
 
 	private void Start() {
 		GameController gc = GameController.GetInstance();
@@ -45,7 +47,8 @@ public class BeaverBehaviour : MonoBehaviour {
 	private void Update() {
 		Animator anim = GetComponentInChildren<Animator>();
 		if(anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Dead")) {
-			transform.position = transform.position + Vector3.down * Time.deltaTime;
+			transform.position = transform.position + Vector3.down * beaverSinkAnimationCurve.Evaluate(beaverSinkT) * Time.deltaTime;
+			beaverSinkT += Time.deltaTime;
 		} 
 		else if(anim == null || !anim.GetCurrentAnimatorStateInfo(0).IsName("BeaverDie")) {
 			// TODO: Prototype code, refactor later.
