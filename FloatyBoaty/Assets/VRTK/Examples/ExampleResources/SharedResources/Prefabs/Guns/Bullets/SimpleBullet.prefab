@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4236411411663234}
   - component: {fileID: 54291588844050308}
   - component: {fileID: 114014762163512110}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SimpleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33554760989999936}
   - component: {fileID: 136668379349285394}
   - component: {fileID: 23927150067640786}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33395728355175808}
   - component: {fileID: 135456754664385626}
   - component: {fileID: 23860861349589298}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15
+  isPiercing: 0
+  inactiveDistance: 0.3
 --- !u!135 &135456754664385626
 SphereCollider:
   m_ObjectHideFlags: 1
