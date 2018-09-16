@@ -52,9 +52,9 @@ public class BeaverBehaviour : MonoBehaviour {
 		RiverGenerator rg = gc.riverGenerator;
 		Creature cr = GetComponent<Creature>();
 
-		velocity += Vector3.ClampMagnitude(GetAcceleration() * Time.deltaTime, maxAcceleration);
+		velocity += Vector3.ClampMagnitude(GetAcceleration(), maxAcceleration) * Time.deltaTime;
 		Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
-		velocity += (waterSpeed - velocity) * waterResistance;
+		velocity += (waterSpeed - velocity) * waterResistance * Time.deltaTime;
 
 		velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
 		velocity.Scale(new Vector3(1, 0, 1));
