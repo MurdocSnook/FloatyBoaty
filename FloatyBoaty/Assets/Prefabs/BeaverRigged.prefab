@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 114482610014284188}
   - component: {fileID: 114941067237532558}
   - component: {fileID: 82192022206564734}
+  - component: {fileID: 135319084206637066}
   m_Layer: 9
   m_Name: BeaverRigged
   m_TagString: Untagged
@@ -2889,6 +2890,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135319084206637066
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121688631596478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137743277568063064
 SkinnedMeshRenderer:

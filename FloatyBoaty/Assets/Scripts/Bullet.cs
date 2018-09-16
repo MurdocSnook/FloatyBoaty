@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
 	public int damage = 5;
 	public bool isPiercing = false;
 	public float inactiveDistance = .5f;
+	public string[] interactLayers = new string[] {"Default", "Hitbox"};
 
 	private Vector3 initialPosition;
 
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour {
     {
         RaycastHit hit;
         Vector3 dif = transform.position - lastPosisiton;
-        bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
+        bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude, LayerMask.GetMask(interactLayers));
 
         if (success)
         {
