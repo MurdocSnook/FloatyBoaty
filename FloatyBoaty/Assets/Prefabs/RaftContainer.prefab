@@ -17337,7 +17337,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7f20b497ad0f86b44a046135a6790e78, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.702
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17538,7 +17538,7 @@ MonoBehaviour:
   rudder: {fileID: 1321754998729362}
   baseWaterForce: 100
   rotationForce: 30
-  centreboardForce: 50
+  centreboardForce: 150
 --- !u!114 &114825822067193600
 MonoBehaviour:
   m_ObjectHideFlags: 1
