@@ -99,8 +99,31 @@ public class BeaverBehaviour : MonoBehaviour {
 			if(col.gameObject == this.gameObject) {
 				continue;
 			}
-
-			Vector3 closestP = col.ClosestPoint(transform.position);
+			Vector3 closestP;
+			if(col.GetType() != typeof(MeshCollider) || ((MeshCollider) col).convex) {
+				closestP = col.ClosestPoint(transform.position);
+			} else {
+				RaycastHit hit = new RaycastHit();
+				for(int i = 0; i < 8; i++) {
+					RaycastHit potentialHit;
+					if (Physics.Raycast(
+						transform.position,
+						Quaternion.Euler(0, i * (360f/8f), 0) * Vector3.forward,
+						out potentialHit,
+						colliderCheckRadius,
+						LayerMask.GetMask(evadeLayers)
+					)) {
+						if(hit.collider == null || potentialHit.distance < hit.distance) {
+							hit = potentialHit;
+						}
+					}
+				}
+				if(hit.collider != null) {
+					closestP = hit.point;
+				} else {
+					closestP = Random.onUnitSphere;
+				}
+			}
 			Vector3 dif = transform.position - closestP;
 			// check if too small, then fix
 			if(dif.magnitude < 0.01f) {
