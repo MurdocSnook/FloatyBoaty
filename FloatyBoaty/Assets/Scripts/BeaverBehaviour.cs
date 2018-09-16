@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Creature))]
 public class BeaverBehaviour : MonoBehaviour {
 	public Transform target;
+	[Tooltip("Used to judge the distance to target more precisely.")]
+	public Collider targetCollider;
 	[Header("Avoid collisions")]
 	public float pushStrength = 2.5f;
 	public float colliderCheckRadius = 0.7f;
@@ -33,6 +35,7 @@ public class BeaverBehaviour : MonoBehaviour {
 
 		GameController gc = GameController.GetInstance();
 
+		// look for target
 		if(gc.raft != null) {
 			target = gc.raft.transform;
 		}
@@ -42,36 +45,57 @@ public class BeaverBehaviour : MonoBehaviour {
 				target = o.transform;
 			}
 		}
+
+		// look for target collider
+		if(target != null && targetCollider == null) {
+			BoxCollider bc = target.gameObject.GetComponentInChildren<BoxCollider>();
+			if(bc != null) {
+				targetCollider = bc;
+			}
+		}
 	}
 
 	private void Update() {
 		Animator anim = GetComponentInChildren<Animator>();
-		// TODO: Prototype code, refactor later.
-
 		GameController gc = GameController.GetInstance();
 		RiverGenerator rg = gc.riverGenerator;
 		Creature cr = GetComponent<Creature>();
 
+		// apply acceleration
 		velocity += Vector3.ClampMagnitude(GetAcceleration(), maxAcceleration) * Time.deltaTime;
+		// apply water resistance
 		Vector3 waterSpeed = rg.GetWaterSpeedAt(transform.position);
 		velocity += (waterSpeed - velocity) * waterResistance * Time.deltaTime;
 
+		// enforce max velocity relative to water speed
 		velocity = Vector3.ClampMagnitude(velocity - waterSpeed, maxSpeed) + waterSpeed;
+		
 		velocity.Scale(new Vector3(1, 0, 1));
 
+		// Apply gravity when dead
 		if(cr.IsDead() && (anim.GetCurrentAnimatorStateInfo(0).IsName("Dead"))) {
 			velocity += Vector3.down * beaverSinkSpeed * Time.deltaTime;
 		}
 
+		// move according to velocity
 		transform.position += velocity * Time.deltaTime;
 
+		// calculate the beaver's rotation and animation blending
 		if(!cr.IsDead()){
 			Vector3 oldRotation = transform.rotation.eulerAngles;
 			Quaternion desiredRotation = transform.rotation;
+
+			// figure out where the beaver wants to look
 			if(target != null && lookAtBoatVSDirectionBlending != null) {
 				float distanceToTarget = Vector3.Distance(target.position, transform.position);
-				float lookAtTarget = lookAtBoatVSDirectionBlending.Evaluate(distanceToTarget);
 
+				// Use more precise distance if target collider is available
+				if(targetCollider != null) {
+					distanceToTarget = Vector3.Distance(targetCollider.ClosestPoint(transform.position), transform.position);
+				}
+
+				// blend between looking to boat and looking forwards depending on distance
+				float lookAtTarget = lookAtBoatVSDirectionBlending.Evaluate(distanceToTarget);
 				desiredRotation = Quaternion.Lerp(
 					Quaternion.LookRotation(velocity - waterSpeed, Vector3.up), 
 					Quaternion.LookRotation(target.position - transform.position, Vector3.up),
@@ -79,8 +103,10 @@ public class BeaverBehaviour : MonoBehaviour {
 				);
 			}
 
+			// "Lerp" the beaver towards the desired rotation over time
 			transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, rotationLerp * Time.deltaTime);
 
+			// Set the beavers apparent curvature depending on rotation change
 			float rotationChange = Mathf.DeltaAngle(oldRotation.y, transform.rotation.eulerAngles.y) / Time.deltaTime;
 			anim.SetFloat("Blend", rotationChange / fullTurnAngle);
 		}
@@ -147,5 +173,11 @@ public class BeaverBehaviour : MonoBehaviour {
 		}
 
 		return acc;
+	}
+
+	private void OnValidate() {
+		if (targetCollider != null && targetCollider.GetType() == typeof(MeshCollider) && !((MeshCollider) targetCollider).convex) {
+			Debug.LogError("Target collider can't be non-convex mesh!");
+		}
 	}
 }
