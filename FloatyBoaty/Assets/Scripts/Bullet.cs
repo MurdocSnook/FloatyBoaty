@@ -14,27 +14,45 @@ public class Bullet : MonoBehaviour {
 	private void Start() {
 		initialPosition = transform.position;
 		lastPosisiton = transform.position;
+		UpdateLineRenderer();
 	}
 
-	private void Update() {
-		RaycastHit hit;
-		Vector3 dif = transform.position - lastPosisiton;
-		bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
+	private void Update()
+    {
+        RaycastHit hit;
+        Vector3 dif = transform.position - lastPosisiton;
+        bool success = Physics.Raycast(lastPosisiton, dif.normalized, out hit, dif.magnitude);
 
-		if(success) {
-			if(Vector3.Distance(initialPosition, hit.point) >= inactiveDistance) {	
-				Creature creature = hit.collider.gameObject.GetComponent<Creature>();
+        if (success)
+        {
+            if (Vector3.Distance(initialPosition, hit.point) >= inactiveDistance)
+            {
+                Creature creature = hit.collider.gameObject.GetComponent<Creature>();
 
-				if(creature != null) {
-					creature.DealDamage(damage);
-				}
+                if (creature != null)
+                {
+                    creature.DealDamage(damage);
+                }
 
-				if(!isPiercing) {
-					Destroy(this.gameObject);
-				}
-			}
-		}
+                if (!isPiercing)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+        }
 
-		lastPosisiton = transform.position;
-	}
+        UpdateLineRenderer();
+
+        lastPosisiton = transform.position;
+    }
+
+    private void UpdateLineRenderer()
+    {
+        LineRenderer lr = GetComponent<LineRenderer>();
+        if (lr != null)
+        {
+            lr.SetPosition(0, lastPosisiton);
+            lr.SetPosition(1, transform.position);
+        }
+    }
 }

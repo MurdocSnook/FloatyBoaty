@@ -11,6 +11,19 @@
         public float projectileSpeed = 1000f;
         public float projectileLife = 5f;
 
+        public bool testFire = false;
+        private float testFireTimer = 0;
+
+        private void Update() {
+            testFireTimer += Time.deltaTime;
+            if(testFireTimer > 1f) {
+                testFireTimer = 0;
+                if(testFire) {
+                    FireProjectile();
+                }
+            }
+        }
+
         protected virtual void OnEnable()
         {
             linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
