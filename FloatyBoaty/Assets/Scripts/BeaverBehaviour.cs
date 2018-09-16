@@ -10,7 +10,6 @@ public class BeaverBehaviour : MonoBehaviour {
 	public Collider targetCollider;
 	[Header("Avoid collisions")]
 	public float pushStrength = 2.5f;
-	public float colliderCheckRadius = 0.7f;
 
 	[Header("Movement")]
 	public float maxSpeed = 1f;
@@ -20,6 +19,14 @@ public class BeaverBehaviour : MonoBehaviour {
 	public float forwardsWeight = 1f;
 	public float strafeWeight = 1f;
 	public string[] evadeLayers = new string[] {"Bouncy", "Default"};
+
+	[Header("Attack")]
+	public int attackDamage;
+	public float attackCooldown = 1f;
+	public GameObject attackPoint;
+	public string[] attackLayerMask = new string[] {"Default"};
+	private float attackTimer = 0f;
+	private DestructibleObject objectAttacking = null;
 
 	[Header("Visuals")]
 	public float fullTurnAngle = 30f;
@@ -109,17 +116,50 @@ public class BeaverBehaviour : MonoBehaviour {
 			// Set the beavers apparent curvature depending on rotation change
 			float rotationChange = Mathf.DeltaAngle(oldRotation.y, transform.rotation.eulerAngles.y) / Time.deltaTime;
 			anim.SetFloat("Blend", rotationChange / fullTurnAngle);
+
+			// determine if attacking
+			if(attackTimer == 0f && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) {
+				// look for attackable objects
+				SphereCollider attackSphere = attackPoint.GetComponent<SphereCollider>();
+				Collider[] attackResult = Physics.OverlapSphere(attackPoint.transform.position, attackSphere.radius, LayerMask.GetMask(attackLayerMask));
+				foreach (Collider col in attackResult)
+				{
+					DestructibleObject d = col.gameObject.GetComponentInParent<DestructibleObject>();
+					if(d != null) {
+						// attack!
+						objectAttacking = d;
+						anim.SetTrigger("Attack");
+						attackTimer = attackCooldown;
+					}
+				}
+			}
+		}
+
+		// Update timers
+		attackTimer -= Mathf.Min(Time.deltaTime, attackTimer);
+	}
+
+	// Is called by animation event
+	public void DealAttackDamage() {
+		if(objectAttacking != null) {
+			objectAttacking.DealDamage(attackDamage);
+			ParticleSystem ps = attackPoint.GetComponentInChildren<ParticleSystem>();
+			if(ps != null) {
+				ps.Play();
+				// ps.Emit(ps.emission.GetBurst(0).minCount);
+			}
 		}
 	}
 
 	private Vector3 GetAcceleration() {
 		Vector3 acc = Vector3.zero;
 		Creature cr = GetComponent<Creature>();
+		SphereCollider sc = GetComponent<SphereCollider>();
 		
 		// avoid other objects
 		Collider[] colliders = Physics.OverlapSphere(
 			transform.position, 
-			colliderCheckRadius, 
+			sc.radius, 
 			LayerMask.GetMask(evadeLayers)
 			);
 		foreach (Collider col in colliders)
@@ -138,7 +178,7 @@ public class BeaverBehaviour : MonoBehaviour {
 						transform.position,
 						Quaternion.Euler(0, i * (360f/8f), 0) * Vector3.forward,
 						out potentialHit,
-						colliderCheckRadius,
+						sc.radius,
 						LayerMask.GetMask(evadeLayers)
 					)) {
 						if(hit.collider == null || potentialHit.distance < hit.distance) {
