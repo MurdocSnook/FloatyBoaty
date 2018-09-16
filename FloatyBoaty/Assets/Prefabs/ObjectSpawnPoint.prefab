@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4032228542546768}
   - component: {fileID: 33839791515742220}
   - component: {fileID: 23218483234279666}
+  - component: {fileID: 114317460964623004}
   m_Layer: 0
   m_Name: DirectionMarker
   m_TagString: Untagged
@@ -113,6 +114,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064046485843740}
   m_Mesh: {fileID: 4300000, guid: c7f5c10f48009e942b295b66e2935d5b, type: 3}
+--- !u!114 &114317460964623004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064046485843740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1af0e2e03b4a448b71bb0647d106cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114696614991926430
 MonoBehaviour:
   m_ObjectHideFlags: 1
