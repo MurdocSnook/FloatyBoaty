@@ -27,11 +27,16 @@ public class Bullet : MonoBehaviour {
         {
             if (Vector3.Distance(initialPosition, hit.point) >= inactiveDistance)
             {
-                Creature creature = hit.collider.gameObject.GetComponent<Creature>();
+                Creature creature = hit.collider.gameObject.GetComponentInParent<Creature>();
+				Hitbox hitbox = hit.collider.gameObject.GetComponent<Hitbox>();
 
                 if (creature != null)
                 {
-                    creature.DealDamage(damage);
+					int modifiedDamage = damage;
+					if(hitbox != null) {
+						modifiedDamage = Mathf.RoundToInt(modifiedDamage * hitbox.damageMultiplier);
+					}
+                    creature.DealDamage(modifiedDamage);
                 }
 
                 if (!isPiercing)
