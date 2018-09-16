@@ -20,7 +20,8 @@ public class BeaverBehaviour : MonoBehaviour {
 	public float strafeWeight = 1f;
 	public string[] evadeLayers = new string[] {"Bouncy", "Default"};
 
-	[Header("Attack")]
+    [Header("Attack")]
+    public AudioSource munch;
 	public int attackDamage;
 	public float attackCooldown = 1f;
 	public GameObject attackPoint;
@@ -146,7 +147,8 @@ public class BeaverBehaviour : MonoBehaviour {
 			ParticleSystem ps = attackPoint.GetComponentInChildren<ParticleSystem>();
 			if(ps != null) {
 				ps.Play();
-				// ps.Emit(ps.emission.GetBurst(0).minCount);
+                // ps.Emit(ps.emission.GetBurst(0).minCount);
+                munch.PlayOneShot(munch.clip);
 			}
 		}
 	}

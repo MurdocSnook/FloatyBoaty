@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour {
         LineRenderer lr = GetComponent<LineRenderer>();
         if (lr != null)
         {
-            lr.SetPosition(0, lastPosisiton);
+            lr.SetPosition(0, initialPosition);
             lr.SetPosition(1, transform.position);
         }
     }

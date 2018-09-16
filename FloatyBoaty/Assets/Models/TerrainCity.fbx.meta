@@ -32,7 +32,17 @@ ModelImporter:
     4300004: TerrainSegCityStraight
     4300006: TerrainSegCityCurveRight
     4300008: TerrainSegCityCurveLeft
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RiverMud
+    second: {fileID: 2100000, guid: 52798f57133b3b24ca4f80906ac5b69e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StoneBeige
+    second: {fileID: 2100000, guid: 711de2ce4ac0c734eabe0f681cb29dad, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
