@@ -29,6 +29,8 @@ public class BeaverBehaviour : MonoBehaviour {
 	private Vector3 velocity;
 
 	private void Start() {
+		strafeWeight *= Random.Range(-1f, 1f);
+
 		GameController gc = GameController.GetInstance();
 
 		if(gc.raft != null) {
