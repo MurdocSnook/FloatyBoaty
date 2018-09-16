@@ -27,8 +27,24 @@ public class RiverGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		while (Vector3.Distance(transform.position, playerObject.transform.position) < generationDistance) {
+		if(currentlyLoadedTemplates.Count < numberOfLoadedTemplates) {
 			Generate();
+		} else {
+			int emergencyBreak = 1000;
+			while (true) {
+				Vector3 p1 = currentlyLoadedTemplates[currentlyLoadedTemplates.Count/2 - 1].gameObject.transform.position;
+				Vector3 p2 = currentlyLoadedTemplates[currentlyLoadedTemplates.Count/2].gameObject.transform.position;
+				
+				if(Vector3.Distance(p1, playerObject.transform.position) < Vector3.Distance(p2, playerObject.transform.position)) {
+					break;
+				}
+				
+				Generate();
+
+				if(emergencyBreak-- < 0) {
+					throw new UnityException("Emergency Break hit, River Generator endless loop.") ;
+				}
+			}
 		}
 	}
 
@@ -106,5 +122,11 @@ public class RiverGenerator : MonoBehaviour {
 		}
 
 		return flowDir;
+	}
+
+	private void OnValidate() {
+		if(numberOfLoadedTemplates < 2) {
+			Debug.LogError("numberOfLoadedTemplates should be at least 2.");
+		}
 	}
 }
