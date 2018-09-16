@@ -17,6 +17,7 @@ public class BeaverBehaviour : MonoBehaviour {
 	public float waterResistance = 0.2f;
 	public float forwardsWeight = 1f;
 	public float strafeWeight = 1f;
+	public string[] evadeLayers = new string[] {"Bouncy", "Default"};
 
 	[Header("Visuals")]
 	public float fullTurnAngle = 30f;
@@ -91,7 +92,7 @@ public class BeaverBehaviour : MonoBehaviour {
 		Collider[] colliders = Physics.OverlapSphere(
 			transform.position, 
 			colliderCheckRadius, 
-			LayerMask.GetMask(new string[] {"Bouncy", "Default"})
+			LayerMask.GetMask(evadeLayers)
 			);
 		foreach (Collider col in colliders)
 		{
