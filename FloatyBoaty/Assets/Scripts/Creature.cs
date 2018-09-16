@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour {
 	public int hp;
+	public AudioSource a1;
+	public AudioSource a2;
 	private bool dead;
 
 	public void DealDamage(int damage) {
@@ -30,6 +32,7 @@ public class Creature : MonoBehaviour {
 		if(anim != null) {
 			anim.SetTrigger("Die");
 		}
-        GetComponent<AudioSource>().Play();
+		
+        a1.Play();
     }
 }
