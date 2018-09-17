@@ -12,7 +12,17 @@ ModelImporter:
     2300000: Reed2DPoly_Model
     3300000: Reed2DPoly_Model
     4300000: Reed2DPoly_Model
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LogBrown
+    second: {fileID: 2100004, guid: 2e72578f22edd6c4289ac0a43ed6ce68, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ReedGreen
+    second: {fileID: 2100000, guid: 2fbc8a7b78c9e414bb09d1836db763f0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
