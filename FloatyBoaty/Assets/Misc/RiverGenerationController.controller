@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: random
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 114980203178117770, guid: 310faa110945cb44791820eea6ed9a48, type: 2}
   uniqueTemplates:
   - {fileID: 114375263730817826, guid: 12746f4dd468da94e89f0e0b3fbc7068, type: 2}
+  - {fileID: 114244058737733492, guid: bcdb3673f351c9d42a96d09e6f7ef1d9, type: 2}
 --- !u!114 &114252594431752340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTemplates: 3
-  maxTemplates: 10
+  maxTemplates: 6
   uniqueChance: 0.5
   templates:
   - {fileID: 114422548999485604, guid: 269c71c7675db2e489659ba4a5b8db3c, type: 2}
@@ -122,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b316a4e30601572459bec6514be005db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTemplates: 5
-  maxTemplates: 10
+  minTemplates: 4
+  maxTemplates: 6
   uniqueChance: 0.5
   templates:
   - {fileID: 114298818270795564, guid: 102e9f0bf6a5c4248a7746b416f7635b, type: 2}
