@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 65969830358674394}
   - component: {fileID: 114244058737733492}
   m_Layer: 0
-  m_Name: TerrainSegBridge
+  m_Name: TerrainSegVillageBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

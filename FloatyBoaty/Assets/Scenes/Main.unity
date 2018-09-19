@@ -3621,7 +3621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riverGenerator: {fileID: 1435670455}
-  raft: {fileID: 0}
+  raft: {fileID: 1500351758}
 --- !u!1001 &1230466941
 Prefab:
   m_ObjectHideFlags: 0
@@ -4615,7 +4615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8714189c8374caa46bf5b480e8a96323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 1500351755}
   generationDistance: 220
   terrainContainer: {fileID: 592527163}
   templates:
@@ -4630,6 +4630,13 @@ MonoBehaviour:
   - {fileID: 114530689600561666, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
   - {fileID: 114248068120444550, guid: 9c1909e3bac6f5e42bcb6b8d8427a194, type: 2}
   - {fileID: 114288767302273120, guid: eb8db0865a54ff24dad64f1f1fef12d9, type: 2}
+  - {fileID: 114250282118184910, guid: 7f4a2c6474d93b440912f51eb9811d9f, type: 2}
+  - {fileID: 114005138516745144, guid: 484da6330e6a2cb40b31e211fa37979a, type: 2}
+  - {fileID: 114422548999485604, guid: 737567a776115684cb189be3e3e4db3c, type: 2}
+  - {fileID: 114812043688393246, guid: dcae1abf0b91b8f4da7f0b4425fa6b50, type: 2}
+  - {fileID: 114409005512719410, guid: dae0a6becb2d5ad478fbf52df0b51544, type: 2}
+  - {fileID: 114117892216745886, guid: a09cff7a672f8844d9c95fb1563a886b, type: 2}
+  - {fileID: 114980203178117770, guid: 310faa110945cb44791820eea6ed9a48, type: 2}
   numberOfLoadedTemplates: 6
   baseWaterSpeed: 1
 --- !u!4 &1435670456
@@ -4668,6 +4675,17 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 1674464391}
     weight: 1
+--- !u!1 &1500351755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1580673781321866, guid: e3efb9f85a0b8af4fa44e8346c52be0a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1922733122}
+--- !u!114 &1500351758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114662013696474930, guid: e3efb9f85a0b8af4fa44e8346c52be0a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1922733122}
+  m_Script: {fileID: 11500000, guid: 3894ec43c045e944a8d7d67af6ae5e91, type: 3}
 --- !u!1 &1519362029
 GameObject:
   m_ObjectHideFlags: 0
