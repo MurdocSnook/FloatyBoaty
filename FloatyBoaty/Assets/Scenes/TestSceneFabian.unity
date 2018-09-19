@@ -1269,6 +1269,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 2083932275}
   projectileSpeed: 5000
   projectileLife: 5
+  testFire: 0
 --- !u!82 &566978392
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1545,52 +1546,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &595361882
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 6.123234e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -6.123234e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 6.123234e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366644924137564, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1217626358007152, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &631840821
 GameObject:
   m_ObjectHideFlags: 0
@@ -4272,6 +4227,12 @@ MonoBehaviour:
   - {fileID: 114530689600561666, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
   - {fileID: 114248068120444550, guid: 9c1909e3bac6f5e42bcb6b8d8427a194, type: 2}
   - {fileID: 114288767302273120, guid: eb8db0865a54ff24dad64f1f1fef12d9, type: 2}
+  - {fileID: 114005138516745144, guid: 484da6330e6a2cb40b31e211fa37979a, type: 2}
+  - {fileID: 114422548999485604, guid: 737567a776115684cb189be3e3e4db3c, type: 2}
+  - {fileID: 114812043688393246, guid: dcae1abf0b91b8f4da7f0b4425fa6b50, type: 2}
+  - {fileID: 114409005512719410, guid: dae0a6becb2d5ad478fbf52df0b51544, type: 2}
+  - {fileID: 114117892216745886, guid: a09cff7a672f8844d9c95fb1563a886b, type: 2}
+  - {fileID: 114980203178117770, guid: 310faa110945cb44791820eea6ed9a48, type: 2}
   numberOfLoadedTemplates: 6
   baseWaterSpeed: 1
 --- !u!4 &1435670456
@@ -5686,6 +5647,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 912227121}
   projectileSpeed: 5000
   projectileLife: 5
+  testFire: 0
 --- !u!4 &2120604255
 Transform:
   m_ObjectHideFlags: 0

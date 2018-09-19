@@ -1,60 +1,56 @@
 fileFormatVersion: 2
-guid: 74fb0e218baec7246b2db72ec5405007
+guid: e216cfb0df61c324db126ad8d3d8a8bc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Bridge
-    100002: //RootNode
-    100004: TerrainSegCityBridge
-    100006: TerrainSegCityCurveLeft
-    100008: TerrainSegCityCurveRight
-    100010: TerrainSegCityStraight
-    100012: TerrainSegCityEntrance
-    100014: TerrainSegCityExit
-    400000: Bridge
-    400002: //RootNode
-    400004: TerrainSegCityBridge
-    400006: TerrainSegCityCurveLeft
-    400008: TerrainSegCityCurveRight
-    400010: TerrainSegCityStraight
-    400012: TerrainSegCityEntrance
-    400014: TerrainSegCityExit
-    2100000: RiverMud
-    2100002: StoneBeige
-    2100004: No Name
-    2100006: GrassGreen
-    2300000: Bridge
-    2300002: TerrainSegCityBridge
-    2300004: TerrainSegCityCurveLeft
-    2300006: TerrainSegCityCurveRight
-    2300008: TerrainSegCityStraight
-    2300010: TerrainSegCityEntrance
-    2300012: TerrainSegCityExit
-    3300000: Bridge
-    3300002: TerrainSegCityBridge
-    3300004: TerrainSegCityCurveLeft
-    3300006: TerrainSegCityCurveRight
-    3300008: TerrainSegCityStraight
-    3300010: TerrainSegCityEntrance
-    3300012: TerrainSegCityExit
-    4300000: TerrainSegCityBridge
-    4300002: Bridge
-    4300004: TerrainSegCityStraight
-    4300006: TerrainSegCityCurveRight
-    4300008: TerrainSegCityCurveLeft
-    4300010: TerrainSegCityEntrance
-    4300012: TerrainSegCityExit
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RiverMud
-    second: {fileID: 2100000, guid: 52798f57133b3b24ca4f80906ac5b69e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StoneBeige
-    second: {fileID: 2100000, guid: 711de2ce4ac0c734eabe0f681cb29dad, type: 2}
+    100000: VillageHouse1
+    100002: VillageHouse1_2
+    100004: VillageHouse2
+    100006: VillageHouse2_2
+    100008: VillageHouse3
+    100010: VillageHouse3_2
+    100012: VillageHouse4
+    100014: VillageHouse4_2
+    100016: VillageHouse5
+    100018: VillageHouse5_2
+    100020: //RootNode
+    400000: VillageHouse1
+    400002: VillageHouse1_2
+    400004: VillageHouse2
+    400006: VillageHouse2_2
+    400008: VillageHouse3
+    400010: VillageHouse3_2
+    400012: VillageHouse4
+    400014: VillageHouse4_2
+    400016: VillageHouse5
+    400018: VillageHouse5_2
+    400020: //RootNode
+    2100000: DarkGray
+    2100002: BuildingColors
+    2100004: RiverMud
+    2100006: White
+    2100008: WindowBLue
+    2100010: NailGray
+    2100012: LogBrownBrighter
+    2100014: LogBrown
+    2100016: StoneBeige
+    2100018: DarkRed
+    2300000: VillageHouse1_2
+    2300002: VillageHouse2_2
+    2300004: VillageHouse3_2
+    2300006: VillageHouse4_2
+    2300008: VillageHouse5_2
+    3300000: VillageHouse1_2
+    3300002: VillageHouse2_2
+    3300004: VillageHouse3_2
+    3300006: VillageHouse4_2
+    3300008: VillageHouse5_2
+    4300000: VillageHouse5_2
+    4300002: VillageHouse4_2
+    4300004: VillageHouse3_2
+    4300006: VillageHouse2_2
+    4300008: VillageHouse1_2
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
