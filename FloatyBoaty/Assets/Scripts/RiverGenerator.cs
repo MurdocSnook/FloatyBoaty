@@ -4,46 +4,51 @@ using System.Linq;
 using UnityEngine;
 using EasyButtons;
 
+// uses animator with GeneratorState behaviours as a state machine
+[RequireComponent(typeof(Animator))]
 public class RiverGenerator : MonoBehaviour {
 	[Header("Generation")]
 	public GameObject playerObject;
 	public float generationDistance;
 
 	public GameObject terrainContainer;
-	public TerrainTemplate[] templates;
-	public int numberOfLoadedTemplates = 6;
 
 	[Header("Water movement")]
 	public float baseWaterSpeed = 1f;
 
-	private List<TerrainTemplate> buffer;
+    private List<TerrainTemplate> buffer;
 	private List<TerrainTemplate> currentlyLoadedTemplates;
+    private int templatesGenerated;
 
-	// Use this for initialization
-	void Start () {
+    public int TemplatesGenerated
+    {
+        get
+        {
+            return templatesGenerated;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
 		buffer = new List<TerrainTemplate>();
 		currentlyLoadedTemplates = new List<TerrainTemplate>();
+		templatesGenerated = 0;
+
+		if(playerObject == null) {
+			playerObject = GameController.GetInstance().raft.gameObject;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(currentlyLoadedTemplates.Count < numberOfLoadedTemplates) {
+		if(Vector3.Distance(playerObject.transform.position, transform.position) < generationDistance) {
 			Generate();
-		} else {
-			int emergencyBreak = 1000;
-			while (true) {
-				Vector3 p1 = currentlyLoadedTemplates[currentlyLoadedTemplates.Count/2 - 1].gameObject.transform.position;
-				Vector3 p2 = currentlyLoadedTemplates[currentlyLoadedTemplates.Count/2].gameObject.transform.position;
-				
-				if(Vector3.Distance(p1, playerObject.transform.position) < Vector3.Distance(p2, playerObject.transform.position)) {
-					break;
-				}
-				
-				Generate();
+		}
 
-				if(emergencyBreak-- < 0) {
-					throw new UnityException("Emergency Break hit, River Generator endless loop.") ;
-				}
+		if (currentlyLoadedTemplates.Count > 0) {
+			TerrainTemplate t = currentlyLoadedTemplates[0];
+			if(Vector3.Distance(playerObject.transform.position, t.gameObject.transform.position) > generationDistance) {
+				Destroy(t.gameObject);
 			}
 		}
 	}
@@ -51,19 +56,21 @@ public class RiverGenerator : MonoBehaviour {
 	[Button]
 	// generates one segment
 	void Generate() {
-		// repopulate buffer on demand
-		if(buffer.Count == 0) {
-			foreach (TerrainTemplate t in templates)
-			{
-				int positionToInsert = Random.Range(0, buffer.Count + 1);
-				buffer.Insert(positionToInsert, t);
-			}
-		}
+        // choose random segment
+		// get templates frow buffer, while discarding null templates
+		TerrainTemplate template = null;
 
-		// choose random segment
-		int i = Random.Range(0, buffer.Count);
-		TerrainTemplate template = buffer[i];
-		buffer.RemoveAt(i);
+		while (template == null) {
+			if(buffer.Count == 0) {
+				// get new templates
+				GetComponent<Animator>().SetTrigger("transit");
+				GetComponent<Animator>().SetFloat("random", Random.Range(0f, 1f));
+				return;
+			}
+			int i = Random.Range(0, buffer.Count);
+			template = buffer[i];
+			buffer.RemoveAt(i);
+		} 
 		GameObject prefab = template.gameObject;
 
 		// instantiate at current position
@@ -94,13 +101,47 @@ public class RiverGenerator : MonoBehaviour {
 
 		// add to the loaded templates
 		currentlyLoadedTemplates.Add(instance.GetComponent<TerrainTemplate>());
-		if(currentlyLoadedTemplates.Count > numberOfLoadedTemplates) {
-			Destroy(currentlyLoadedTemplates[0].gameObject);
-			currentlyLoadedTemplates.RemoveAt(0);
-		}
+
+		// increase counter
+		templatesGenerated++;
 	}
 
-	public Vector3 GetWaterSpeedAt(Vector3 position) {
+    public void RepopulateBuffer(TerrainTemplate[] selection, TerrainTemplate[] uniques, int number, float uniqueChance)
+    {
+		buffer.Clear();
+
+		int i = 0;
+
+		List<TerrainTemplate> uniquesBuf = new List<TerrainTemplate>();
+		foreach (TerrainTemplate u in uniques)
+		{
+			if(Random.Range(0f, 1f) < uniqueChance) {
+				int positionToInsert = Random.Range(0, buffer.Count + 1);
+				buffer.Insert(positionToInsert, u);
+
+				i++;
+			}
+		}
+
+		// insert set of templates multiple times
+		do {
+			foreach (TerrainTemplate t in selection)
+			{
+				int positionToInsert = Random.Range(0, buffer.Count + 1);
+				buffer.Insert(positionToInsert, t);
+
+				i++;
+			}
+		} while (i < number);
+
+		// remove excess
+		while(i > number) {
+			buffer.RemoveAt(0);
+			i--;
+		}
+    }
+
+    public Vector3 GetWaterSpeedAt(Vector3 position) {
 		return GetWaterDirectionAt(position) * baseWaterSpeed;
 	}
 
@@ -122,11 +163,5 @@ public class RiverGenerator : MonoBehaviour {
 		}
 
 		return flowDir;
-	}
-
-	private void OnValidate() {
-		if(numberOfLoadedTemplates < 2) {
-			Debug.LogError("numberOfLoadedTemplates should be at least 2.");
-		}
 	}
 }

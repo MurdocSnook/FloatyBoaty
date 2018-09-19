@@ -4597,6 +4597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1435670456}
   - component: {fileID: 1435670455}
+  - component: {fileID: 1435670457}
   m_Layer: 0
   m_Name: RiverGenerator
   m_TagString: Untagged
@@ -4618,26 +4619,6 @@ MonoBehaviour:
   playerObject: {fileID: 1500351755}
   generationDistance: 220
   terrainContainer: {fileID: 592527163}
-  templates:
-  - {fileID: 114422548999485604, guid: 269c71c7675db2e489659ba4a5b8db3c, type: 2}
-  - {fileID: 114812043688393246, guid: 430a5c4916100744fa62a758b913ebc7, type: 2}
-  - {fileID: 114409005512719410, guid: fe67a9be13abc10439cc38de10664d4f, type: 2}
-  - {fileID: 114117892216745886, guid: 9fd257c85b7fca646878c8078088fb0f, type: 2}
-  - {fileID: 114980203178117770, guid: 8f42fb7863adf484a8f3dc9ea6ef9635, type: 2}
-  - {fileID: 114375263730817826, guid: 12746f4dd468da94e89f0e0b3fbc7068, type: 2}
-  - {fileID: 114244058737733492, guid: bcdb3673f351c9d42a96d09e6f7ef1d9, type: 2}
-  - {fileID: 114298818270795564, guid: 102e9f0bf6a5c4248a7746b416f7635b, type: 2}
-  - {fileID: 114530689600561666, guid: 2653462a2952f1248ad6a4052865c270, type: 2}
-  - {fileID: 114248068120444550, guid: 9c1909e3bac6f5e42bcb6b8d8427a194, type: 2}
-  - {fileID: 114288767302273120, guid: eb8db0865a54ff24dad64f1f1fef12d9, type: 2}
-  - {fileID: 114250282118184910, guid: 7f4a2c6474d93b440912f51eb9811d9f, type: 2}
-  - {fileID: 114005138516745144, guid: 484da6330e6a2cb40b31e211fa37979a, type: 2}
-  - {fileID: 114422548999485604, guid: 737567a776115684cb189be3e3e4db3c, type: 2}
-  - {fileID: 114812043688393246, guid: dcae1abf0b91b8f4da7f0b4425fa6b50, type: 2}
-  - {fileID: 114409005512719410, guid: dae0a6becb2d5ad478fbf52df0b51544, type: 2}
-  - {fileID: 114117892216745886, guid: a09cff7a672f8844d9c95fb1563a886b, type: 2}
-  - {fileID: 114980203178117770, guid: 310faa110945cb44791820eea6ed9a48, type: 2}
-  numberOfLoadedTemplates: 6
   baseWaterSpeed: 1
 --- !u!4 &1435670456
 Transform:
@@ -4652,6 +4633,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1435670457
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1435670454}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf8aef4c911d61f4a9a321601b272d48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1467600204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1456979091535404, guid: e3efb9f85a0b8af4fa44e8346c52be0a,
