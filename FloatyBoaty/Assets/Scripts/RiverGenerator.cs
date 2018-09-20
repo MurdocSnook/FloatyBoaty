@@ -55,7 +55,8 @@ public class RiverGenerator : MonoBehaviour {
 		if (currentlyLoadedTemplates.Count > 0) {
 			TerrainTemplate t = currentlyLoadedTemplates[0];
 			if(Vector3.Distance(playerObject.transform.position, t.gameObject.transform.position) > generationDistance) {
-				Destroy(t.gameObject);
+                currentlyLoadedTemplates.RemoveAt(0);
+                Destroy(t.gameObject);
 			}
 		}
 	}

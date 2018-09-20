@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4410249754124134}
   - component: {fileID: 20745168897331192}
-  - component: {fileID: 81722152380303852}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -313,13 +312,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 4c8f58db754d28c4cac07330f091a0c7, type: 3}
---- !u!81 &81722152380303852
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1483592346227464}
-  m_Enabled: 1
 --- !u!82 &82843339772258930
 AudioSource:
   m_ObjectHideFlags: 1
