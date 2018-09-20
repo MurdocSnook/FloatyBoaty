@@ -646,6 +646,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1af0e2e03b4a448b71bb0647d106cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &309439944
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.291
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647175656960806, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25affed186bff6349aabb58d2b48e932, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &323383497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1093,48 @@ Transform:
   m_Father: {fileID: 1265924966}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &550229552
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.291
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222858891926674, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6002ebe6da3c3e7459e9819020d01ef4, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &579043067
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,9 +3274,9 @@ MonoBehaviour:
   playerObject: {fileID: 1500351755}
   generationDistance: 220
   terrainContainer: {fileID: 592527163}
-  maxTemplatesBetweenEvents: 3
-  minTemplatesBetweenEvents: 3
-  eventSpawnCountdown: 3
+  maxTemplatesBetweenEvents: 1
+  minTemplatesBetweenEvents: 1
+  eventSpawnCountdown: 1
   baseWaterSpeed: 1
 --- !u!4 &1435670456
 Transform:
