@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4316535060799180}
   - component: {fileID: 114013223401141124}
   m_Layer: 0
-  m_Name: BeaverEvent
+  m_Name: RocksEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,10 +52,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOptions:
-  - content: {fileID: 1121688631596478, guid: f9f982ef2a5b14c4da424e7255172ceb, type: 2}
+  - content: {fileID: 1715670942792556, guid: 365240603047c42488768b3bdef983d1, type: 2}
+    weight: 1
+  - content: {fileID: 1166745832256762, guid: 68a6adc7388b45d469dbf6055f3c89fb, type: 2}
+    weight: 1
+  - content: {fileID: 1281035186682780, guid: de361d36e3a7c6b46821473e052f10ca, type: 2}
+    weight: 1
+  - content: {fileID: 1125526769599632, guid: 0018926c0d07c5541b1aa1f0b51c774f, type: 2}
+    weight: 1
+  - content: {fileID: 1052021110823742, guid: cf543cc7858146f45b3330152b069804, type: 2}
     weight: 1
   amount: 5
   setParent: 0
   spawnpointType: 0
-  activationDistance: 40
+  activationDistance: 100
   terrainTemplate: {fileID: 0}

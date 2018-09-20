@@ -61,5 +61,5 @@ MonoBehaviour:
   amount: 5
   setParent: 0
   spawnpointType: 1
-  activationDistance: 12
+  activationDistance: 40
   terrainTemplate: {fileID: 0}
