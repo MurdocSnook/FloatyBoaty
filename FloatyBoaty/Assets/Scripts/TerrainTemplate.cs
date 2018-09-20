@@ -21,6 +21,9 @@ public class TerrainTemplate : MonoBehaviour {
         }
     }
 
+	[Header("Spawning")]
+	public RiverEvent[] possibleEvents;
+
     // Use this for initialization
     void Start () {
 		CalulateCurve();
@@ -59,6 +62,16 @@ public class TerrainTemplate : MonoBehaviour {
 			newCurve.Add(curve[curve.Count - 1]);
 			curve = newCurve;
 		}
+	}
+
+	public void SpawnEvent() {
+		if(possibleEvents.Length == 0) {
+			return;
+		}
+
+		GameObject prefab = possibleEvents[Random.Range(0, possibleEvents.Length)].gameObject;
+		GameObject instance = Instantiate(prefab, entranceMarker.transform.position, entranceMarker.transform.rotation);
+		instance.GetComponent<RiverEvent>().terrainTemplate = this;
 	}
 
 	private void OnDrawGizmos() {

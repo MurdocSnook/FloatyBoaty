@@ -13,6 +13,13 @@ public class RiverGenerator : MonoBehaviour {
 
 	public GameObject terrainContainer;
 
+
+	[Header("Event spawning")]
+	public int maxTemplatesBetweenEvents = 3;
+	public int minTemplatesBetweenEvents = 3;
+
+	public int eventSpawnCountdown = 3;
+
 	[Header("Water movement")]
 	public float baseWaterSpeed = 1f;
 
@@ -104,6 +111,15 @@ public class RiverGenerator : MonoBehaviour {
 
 		// increase counter
 		templatesGenerated++;
+
+		// handle events
+		eventSpawnCountdown--;
+		if(eventSpawnCountdown <= 0) {
+			eventSpawnCountdown = Random.Range(minTemplatesBetweenEvents, maxTemplatesBetweenEvents+1);
+
+			// spawn event
+			instance.GetComponent<TerrainTemplate>().SpawnEvent();
+		}
 	}
 
     public void RepopulateBuffer(TerrainTemplate[] selection, TerrainTemplate[] uniques, int number, float uniqueChance)
