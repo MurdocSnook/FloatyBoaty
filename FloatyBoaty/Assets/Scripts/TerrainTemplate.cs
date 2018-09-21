@@ -17,6 +17,9 @@ public class TerrainTemplate : MonoBehaviour {
     {
         get
         {
+			if(curve == null) {
+				CalulateCurve();
+			}
             return curve;
         }
     }
