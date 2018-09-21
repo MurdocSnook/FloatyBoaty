@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour {
             if (Vector3.Distance(initialPosition, hit.point) >= inactiveDistance)
             {
                 Creature creature = hit.collider.gameObject.GetComponentInParent<Creature>();
+                DestructibleObject destructibleObject = hit.collider.gameObject.GetComponentInParent<DestructibleObject>();
 				Hitbox hitbox = hit.collider.gameObject.GetComponent<Hitbox>();
 
                 if (creature != null)
@@ -38,6 +39,9 @@ public class Bullet : MonoBehaviour {
 						modifiedDamage = Mathf.RoundToInt(modifiedDamage * hitbox.damageMultiplier);
 					}
                     creature.DealDamage(modifiedDamage);
+                }
+                else if(destructibleObject != null) {
+                    destructibleObject.DealDamage(damage);
                 }
 
                 if (!isPiercing)
