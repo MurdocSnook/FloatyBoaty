@@ -126,7 +126,7 @@ public class BeaverBehaviour : MonoBehaviour {
 				foreach (Collider col in attackResult)
 				{
 					DestructibleObject d = col.gameObject.GetComponentInParent<DestructibleObject>();
-					if(d != null) {
+					if(d != null && d.objectMaterial == DestructibleObject.DestructibleObjectMaterial.WOOD) {
 						// attack!
 						objectAttacking = d;
 						anim.SetTrigger("Attack");

@@ -5,6 +5,12 @@ using UnityEngine;
 public class DestructibleObject : MonoBehaviour {
 	public int hp = 100;
 	public GameObject[] damageStates;
+	public DestructibleObjectMaterial objectMaterial = DestructibleObjectMaterial.WOOD;
+
+	public enum DestructibleObjectMaterial {
+		WOOD,
+		STONE
+	}
 
 	private int maxHp;
 	private int currentDamageState;
