@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 	public RiverGenerator riverGenerator;
 	public RaftController raft;
+	public GameObject deathRoom;
 
 	public static GameController instance;
 
@@ -28,9 +29,15 @@ public class GameController : MonoBehaviour {
 
 	private void Update() {
 		Transform head = VRTK_DeviceFinder.HeadsetCamera();
-		if(head.position.y <= 0) {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		if(head != null && head.position.y <= 0) {
+			raft.gameObject.SetActive(false);
+			deathRoom.SetActive(true);
+			VRTK.VRTK_DeviceFinder.PlayAreaTransform().position = deathRoom.transform.position;
 		}
+	}
+
+	public void QuickRestartGame() {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	private void OnValidate() {
