@@ -47,6 +47,6 @@ public class DestructibleObject : MonoBehaviour {
 	public void DealDamage(int damage) {
 		hp -= damage;
         hitsound.pitch = (Random.Range(0.8f, 1.3f));
-        hitsound.Play();
+        hitsound.PlayOneShot(hitsound.clip);
     }
 }
