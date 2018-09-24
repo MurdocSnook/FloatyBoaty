@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 	public RiverGenerator riverGenerator;
@@ -24,6 +26,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	private void Update() {
+		Transform head = VRTK_DeviceFinder.HeadsetCamera();
+		if(head.position.y <= 0) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+	}
 
 	private void OnValidate() {
 		if(riverGenerator == null) {

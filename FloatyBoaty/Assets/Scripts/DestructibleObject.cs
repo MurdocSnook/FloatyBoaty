@@ -25,10 +25,13 @@ public class DestructibleObject : MonoBehaviour {
 	private void Update() {
 		if(damageStates != null && damageStates.Length > 0) {
 			int state = Mathf.Clamp(
-				(int)((1f - (float) hp / maxHp) * damageStates.Length), 
+				(int)((1f - (float) hp / maxHp) * (damageStates.Length - 1)), 
 				0, 
 				damageStates.Length-1
 			);
+			if(hp <= 0) {
+				state = damageStates.Length - 1;
+			}
 
 			if(state != currentDamageState) {
 				ChangeState(state);
@@ -42,6 +45,10 @@ public class DestructibleObject : MonoBehaviour {
 		damageStates[currentDamageState].SetActive(false);
 		damageStates[newState].SetActive(true);
 		currentDamageState = newState;
+	}
+
+	public GameObject GetCurrentActiveObject() {
+		return damageStates[currentDamageState];
 	}
 
 	public void DealDamage(int damage) {

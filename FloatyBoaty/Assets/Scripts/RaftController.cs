@@ -39,10 +39,16 @@ public class RaftController : MonoBehaviour {
 	}
 	
 	void Update () {
+		Transform t = transform;
+		DestructibleObject d = GetComponent<DestructibleObject>();
+		if(d != null) {
+			t = d.GetCurrentActiveObject().transform;
+		}
+
         Transform playAreaTransform = VRTK_DeviceFinder.PlayAreaTransform();
 		if(playAreaTransform != null) {
-			playAreaTransform.position = transform.position;
-	        playAreaTransform.rotation = transform.rotation;
+			playAreaTransform.position = t.position;
+	        playAreaTransform.rotation = t.rotation;
 		}
 	}
 }
