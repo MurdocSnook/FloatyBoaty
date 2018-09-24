@@ -6,8 +6,10 @@ public class DestructibleObject : MonoBehaviour {
 	public int hp = 100;
 	public GameObject[] damageStates;
 	public DestructibleObjectMaterial objectMaterial = DestructibleObjectMaterial.WOOD;
+    public AudioSource statechangesound;
+    public AudioSource hitsound;
 
-	public enum DestructibleObjectMaterial {
+    public enum DestructibleObjectMaterial {
 		WOOD,
 		STONE
 	}
@@ -30,7 +32,9 @@ public class DestructibleObject : MonoBehaviour {
 
 			if(state != currentDamageState) {
 				ChangeState(state);
-			}
+                statechangesound.pitch = (Random.Range(0.6f, 1.5f));
+                statechangesound.Play();
+            }
 		} 
 	}
 
@@ -42,5 +46,7 @@ public class DestructibleObject : MonoBehaviour {
 
 	public void DealDamage(int damage) {
 		hp -= damage;
-	}
+        hitsound.pitch = (Random.Range(0.8f, 1.3f));
+        hitsound.Play();
+    }
 }

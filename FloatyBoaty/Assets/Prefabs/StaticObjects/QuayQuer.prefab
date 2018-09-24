@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4805913573639598}
   - component: {fileID: 33999441731259506}
   - component: {fileID: 23446495574883652}
+  - component: {fileID: 64486696711433736}
   m_Layer: 0
   m_Name: QuayQuer_Model
   m_TagString: Untagged
@@ -216,6 +217,20 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791350266090440}
+  m_Mesh: {fileID: 4300000, guid: 3dea1936ec36ce8459498db49ac49c5c, type: 3}
+--- !u!64 &64486696711433736
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791350266090440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3dea1936ec36ce8459498db49ac49c5c, type: 3}
 --- !u!114 &114010039378247514
 MonoBehaviour:

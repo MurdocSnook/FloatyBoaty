@@ -4,11 +4,26 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Rock4_2
+    100004: Rock4Broken
+    100006: Rock4Damaged
     400000: //RootNode
+    400002: Rock4_2
+    400004: Rock4Broken
+    400006: Rock4Damaged
     2100000: NailGray
     2300000: //RootNode
+    2300002: Rock4_2
+    2300004: Rock4Broken
+    2300006: Rock4Damaged
     3300000: //RootNode
+    3300002: Rock4_2
+    3300004: Rock4Broken
+    3300006: Rock4Damaged
     4300000: Rock_4
+    4300002: Rock4_2
+    4300004: Rock4Damaged
+    4300006: Rock4Broken
   externalObjects: {}
   materials:
     importMaterials: 1

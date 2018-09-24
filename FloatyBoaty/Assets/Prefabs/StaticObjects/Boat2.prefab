@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4077804842093564}
   - component: {fileID: 33394494165608370}
   - component: {fileID: 23467354404453854}
+  - component: {fileID: 64956156694389216}
   m_Layer: 0
   m_Name: Boat2_Model
   m_TagString: Untagged
@@ -114,4 +115,18 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1132299029028958}
+  m_Mesh: {fileID: 4300000, guid: 7217d515e13976c42912004783fbdadb, type: 3}
+--- !u!64 &64956156694389216
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132299029028958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 7217d515e13976c42912004783fbdadb, type: 3}
