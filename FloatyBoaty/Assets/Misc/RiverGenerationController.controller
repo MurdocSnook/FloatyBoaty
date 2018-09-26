@@ -56,6 +56,7 @@ MonoBehaviour:
   uniqueTemplates:
   - {fileID: 114375263730817826, guid: 12746f4dd468da94e89f0e0b3fbc7068, type: 2}
   - {fileID: 114244058737733492, guid: bcdb3673f351c9d42a96d09e6f7ef1d9, type: 2}
+  - {fileID: 114025093862558708, guid: 9f9305245aecf884baf988ccd573ad87, type: 2}
 --- !u!114 &114252594431752340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,6 +79,7 @@ MonoBehaviour:
   - {fileID: 114980203178117770, guid: 8f42fb7863adf484a8f3dc9ea6ef9635, type: 2}
   uniqueTemplates:
   - {fileID: 114244058737733492, guid: bcdb3673f351c9d42a96d09e6f7ef1d9, type: 2}
+  - {fileID: 114025093862558708, guid: 9f9305245aecf884baf988ccd573ad87, type: 2}
 --- !u!114 &114543092611142128
 MonoBehaviour:
   m_ObjectHideFlags: 1

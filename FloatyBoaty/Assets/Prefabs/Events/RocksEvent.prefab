@@ -63,7 +63,7 @@ MonoBehaviour:
   - content: {fileID: 1052021110823742, guid: cf543cc7858146f45b3330152b069804, type: 2}
     weight: 1
   amount: 5
-  setParent: 0
+  setParent: 1
   spawnpointType: 0
   activationDistance: 100
   terrainTemplate: {fileID: 0}
