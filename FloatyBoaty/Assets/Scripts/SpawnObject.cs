@@ -6,6 +6,7 @@ using EasyButtons;
 public class SpawnObject : MonoBehaviour {
 	public bool setParent = true;
 	public bool spawnOnStart = true;
+	public Vector3 randomRotation = Vector3.zero;
 	
     [System.Serializable]
     public class SpawnOption
@@ -30,6 +31,11 @@ public class SpawnObject : MonoBehaviour {
 			if(setParent) {
 				obj.transform.SetParent(transform);
 			}
+			obj.transform.Rotate(
+				Random.Range(-randomRotation.x, randomRotation.x),
+				Random.Range(-randomRotation.y, randomRotation.y),
+				Random.Range(-randomRotation.z, randomRotation.z)
+			);
 		}
 	}
 
